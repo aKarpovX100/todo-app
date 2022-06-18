@@ -1,0 +1,12 @@
+.app-wrapper {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 450px 3fr;
+
+  @media(max-width: 767px) {
+    display: block;
+  }
+}

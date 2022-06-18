@@ -1,0 +1,39 @@
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+.form-wrapper {
+  background-color: #f8f8f8;
+  padding: 15px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid #eae9e9;
+
+  @media(max-width: 767px) {
+    height: max-content;
+  }
+
+  .todo-form {
+    max-width: 600px;
+    margin: 0 auto;
+
+    .form-title {
+      margin: 10px 0;
+    }
+
+    .btn-primary {
+      margin-top: 10px;
+    }
+
+    .is-done {
+      display: flex;
+      align-items: center;
+
+      input {
+        margin-left: 10px;
+      }
+    }
+  }
+}

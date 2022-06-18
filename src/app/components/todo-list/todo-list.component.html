@@ -1,0 +1,49 @@
+<div class="todo-list-wrapper">
+  <div *ngIf="loading" class="loading">
+    Please, wait 👌
+  </div>
+
+  <div class="todo-list">
+    <div
+      *ngFor="let todo of todos$ | async"
+      class="list-item"
+      [ngClass]="{
+        'expired': todo?.isExpired,
+        'done': !todo?.isExpired && todo?.isDone,
+        'has-more-than-12h': !todo?.isExpired && !todo?.isDone && todo?.willExpireHours > 12,
+        'has-less-than-12h': !todo?.isExpired && !todo?.isDone && todo?.willExpireHours < 12
+      }"
+    >
+      <input
+        [disabled]="todo?.isExpired"
+        type="checkbox"
+        class="list-item-is-done"
+        [(ngModel)]="todo.isDone"
+        (change)="onToggleIsDoneStatus(todo)"
+      />
+
+      <div class="list-item-data">
+        <h3 class="list-item-title">
+          {{ todo?.name }}
+        </h3>
+
+        <p *ngIf="todo?.description" class="list-item-description">
+          {{ todo?.description }}
+        </p>
+
+        <p class="list-item-status">
+          <b>{{ todo?.isExpired ? '❌ Expired:' : '🕐 Time Left:' }}</b>
+          {{ todo?.dueDate | timeDiff }}
+        </p>
+      </div>
+
+      <div
+        class="list-item-trash"
+        (click)="onDeleteTodo(todo?.id)"
+        *ngIf="!todo?.isDone && !todo?.isExpired"
+      >
+        🗑
+      </div>
+    </div>
+  </div>
+</div>

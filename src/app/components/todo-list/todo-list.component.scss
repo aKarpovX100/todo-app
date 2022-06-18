@@ -1,0 +1,77 @@
+:host {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.todo-list-wrapper {
+  padding: 15px 30px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  max-height: 100vh;
+
+  @media(max-width: 767px) {
+    padding: 15px;
+    max-height: max-content;
+    overflow: visible;
+  }
+
+  .todo-list {
+    .list-item {
+      font-size: 16px;
+      margin: 15px 0;
+      background-color: #f6f6f6;
+      border-radius: 4px;
+      padding: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &.expired {
+        background-color: #ffeaea;
+      }
+
+      &.done {
+        background-color: #daffe3;
+      }
+
+      &.has-more-than-12h {
+        background-color: #cdfdff;
+      }
+
+      &.has-less-than-12h {
+        background-color: #fff6ca;
+      }
+
+      &-is-done {
+        margin-right: 15px;
+        cursor: pointer;
+      }
+
+      &-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      &-description {
+        color: #747474;
+      }
+
+      &-status {
+        color: #535353;
+        margin-top: 10px;
+      }
+
+      &-data {
+        width: 100%;
+      }
+
+      &-trash {
+        font-size: 25px;
+        cursor: pointer;
+      }
+    }
+  }
+}

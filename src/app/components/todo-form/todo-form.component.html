@@ -1,0 +1,74 @@
+<div class="form-wrapper">
+  <div *ngIf="loading" class="loading">
+    Please, wait 👌
+  </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmitForm()"
+    class="todo-form"
+  >
+    <h2 class="form-title">Add new task</h2>
+
+    <div class="form-inside">
+      <div>
+        <input
+          type="text"
+          formControlName="name"
+          placeholder="Name"
+        />
+
+        <p *ngIf="form?.get('name')?.errors?.required && form?.get('name').dirty" class="error">
+          This field is required
+        </p>
+
+        <p *ngIf="form?.get('name')?.errors?.maxlength" class="error">
+          Maximum length is {{ form?.get('name')?.errors?.maxlength?.requiredLength }}
+        </p>
+      </div>
+
+      <div>
+        <textarea
+          formControlName="description"
+          placeholder="Description"
+        ></textarea>
+
+        <p *ngIf="form?.get('description')?.errors?.maxlength" class="error">
+          Maximum length is {{ form?.get('description')?.errors?.maxlength?.requiredLength }}
+        </p>
+      </div>
+
+      <div>
+        <input
+          type="number"
+          formControlName="dueIn"
+          placeholder="How many hours do I have?"
+          [min]="'0.00'"
+          [max]="'100.00'"
+          [step]="'0.01'"
+        />
+
+        <p *ngIf="form?.get('dueIn')?.errors?.required && form?.get('dueIn').dirty" class="error">
+          This field is required
+        </p>
+
+        <p *ngIf="form?.get('dueIn')?.errors?.min" class="error">
+          Minimum value is {{ form?.get('dueIn')?.errors?.min?.min }}
+        </p>
+      </div>
+
+      <div class="is-done">
+        <label for="isDone">Is done?</label>
+        <input type="checkbox" name="Done" formControlName="isDone">
+      </div>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
